@@ -306,6 +306,9 @@ repl-diskless-sync-delay 5
 # every time there is low traffic between the master and the slave.
 #
 # repl-timeout 60
+<% if @redis_repl_timeout %>
+repl-timeout <%= @redis_repl_timeout %>
+<% end %>
 
 # Disable TCP_NODELAY on the slave socket after SYNC?
 #

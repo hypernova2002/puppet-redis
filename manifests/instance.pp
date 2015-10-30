@@ -109,6 +109,10 @@
 #   Set the redis config value maxmemory-policy.
 #   Default: noeviction
 #
+# [*redis_repl_timeout*]
+#   Set the redis replication timeout
+#   Default: 60
+#
 # === Examples
 #
 # redis::instance { 'redis-6900':
@@ -150,7 +154,8 @@ define redis::instance (
   $redis_cluster_slave_validity_factor = $redis::params::redis_cluster_slave_validity_factor,
   $redis_cluster_migration_barrier = $redis::params::redis_cluster_migration_barrier,
   $redis_cluster_require_full_coverage = $redis::params::redis_cluster_require_full_coverage,
-  $redis_max_memory_policy = $redis::params::redis_max_memory_policy
+  $redis_max_memory_policy = $redis::params::redis_max_memory_policy,
+  $redis_repl_timeout = $redis::params::redis_repl_timeout
 ) {
 
   # Using Exec as a dependency here to avoid dependency cyclying when doing

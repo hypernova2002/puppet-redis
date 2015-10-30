@@ -121,6 +121,10 @@
 #   Set the redis config value maxmemory-policy.
 #   Default: noeviction
 #
+# [*redis_repl_timeout*]
+#   Set the redis replication timeout
+#   Default: 60
+#
 # === Examples
 #
 # include redis
@@ -170,7 +174,8 @@ class redis (
   $redis_cluster_slave_validity_factor = $redis::params::redis_cluster_slave_validity_factor,
   $redis_cluster_migration_barrier = $redis::params::redis_cluster_migration_barrier,
   $redis_cluster_require_full_coverage = $redis::params::redis_cluster_require_full_coverage,
-  $redis_max_memory_policy = $redis::params::redis_max_memory_policy
+  $redis_max_memory_policy = $redis::params::redis_max_memory_policy,
+  $redis_repl_timeout = $redis::params::redis_timeout
 ) inherits redis::params {
 
   include wget
@@ -207,6 +212,7 @@ class redis (
     redis_cluster_migration_barrier     => $redis_cluster_migration_barrier,
     redis_cluster_require_full_coverage => $redis_cluster_require_full_coverage,
     redis_max_memory_policy             => $redis_max_memory_policy,
+    redis_repl_timeout                  => $redis_repl_timeout,
   }
 
   File {
